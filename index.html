@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Stick Fight Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="titleScreen">
+      <h1>STICK FIGHT</h1>
+      <div>
+        <button id="easyBtn" class="difficulty-button">Easy</button>
+        <button id="mediumBtn" class="difficulty-button">Medium</button>
+        <button id="hardBtn" class="difficulty-button">Hard</button>
+      </div>
+    </div>
+
+    <canvas id="gameCanvas" width="800" height="600" class="hidden"></canvas>
+
+    <!-- load scripts in order: constants, core, game objects, main -->
+    <script src="scripts/core/constants.js"></script>
+    <script src="scripts/core/hit_logic.js"></script>
+    <script src="scripts/core/controls.js"></script>
+    <script src="scripts/core/physics.js"></script>
+    <script src="scripts/game_objects/player.js"></script>
+    <script src="scripts/game_objects/enemies.js"></script>
+    <script src="scripts/main.js"></script>
+  </body>
+</html>

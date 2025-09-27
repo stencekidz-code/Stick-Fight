@@ -1,0 +1,53 @@
+/* Main layout and title screen styles */
+html, body {
+	height: 100%;
+}
+body {
+	background-color: #0a0a0a;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+	font-family: 'Courier New', Courier, monospace;
+}
+
+#titleScreen {
+	color: #00ffff;
+	text-align: center;
+}
+
+#titleScreen h1 {
+	font-size: 5em;
+	margin-bottom: 20px;
+	text-shadow: 0 0 10px #00ffff;
+}
+
+.difficulty-button {
+	font-size: 1.5em;
+	padding: 10px 30px;
+	margin: 10px;
+	background-color: transparent;
+	border: 2px solid #00ffff;
+	color: #00ffff;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.difficulty-button:hover {
+	background-color: #00ffff;
+	color: #0a0a0a;
+	box-shadow: 0 0 20px #00ffff;
+}
+
+#gameCanvas {
+	background-color: #1a1a2e;
+	border: 2px solid #00ffff;
+}
+
+.hidden { display: none; }
+
+/* Small responsive tweak */
+@media (max-width: 900px) {
+	#gameCanvas { width: 100%; height: auto; }
+}
