@@ -6,17 +6,18 @@
 	const easyBtn = document.getElementById('easyBtn');
 	const mediumBtn = document.getElementById('mediumBtn');
 	const hardBtn = document.getElementById('hardBtn');
+	const coinCounter = document.getElementById('coin-counter');
 
 	let gameState = 'titleScreen';
 	let player, killCount, bossSpawned, enemies, keys;
 	const floor = canvas.height - 80;
 
-		easyBtn.addEventListener('click', () => startGame('easy'));
-		mediumBtn.addEventListener('click', () => startGame('medium'));
-		hardBtn.addEventListener('click', () => startGame('hard'));
+	easyBtn.addEventListener('click', () => startGame('easy'));
+	mediumBtn.addEventListener('click', () => startGame('medium'));
+	hardBtn.addEventListener('click', () => startGame('hard'));
 
-		// Initialize centralized input handling
-		Controls.init();
+	// Initialize centralized input handling
+	Controls.init();
 
 	function startGame(difficulty) {
 		if (difficulty === 'easy') { window.GC.ENEMY_SPEED = 1; window.GC.ENEMY_PUNCH_DAMAGE = 2; window.GC.BOSS_PUNCH_DAMAGE = 15; }
@@ -96,6 +97,9 @@
 
 			// Defeat logic
 			if (enemy.health <= 0) {
+                if (typeof enemy.coinValue === 'number' && !isNaN(enemy.coinValue)) {
+                    player.coins += enemy.coinValue;
+                }
 				enemies.splice(i, 1);
 				if (!enemy.isBoss) { killCount++; }
 				else {
@@ -164,7 +168,10 @@
 			const currentHealthWidth = (e.health / e.maxHealth) * healthBarWidth;
 			ctx.fillRect(healthBarX, healthBarY, currentHealthWidth, 10);
 		});
-	}
 
+		// <<< EXACT ADDITION 5: UPDATE HUD TEXT HERE >>>
+		coinCounter.textContent = `Coins: ${player.coins}`; 
+		// ---
+	}
 })();
 

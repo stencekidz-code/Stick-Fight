@@ -41,5 +41,6 @@
     return rectsIntersect(ex, ey, 40, 20, player.x - player.width / 2, player.y - player.height, player.width, player.height);
   }
 
+  
   window.HitLogic = { drawCharacter, playerAttackHit, enemyAttackHit };
 })();

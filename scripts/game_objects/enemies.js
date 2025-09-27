@@ -12,9 +12,11 @@
       isAttacking: false,
       facing: 'left',
       action: 'idle',
-      width, height, speed, health, maxHealth: health, isBoss, hasHit: false
+      width, height, speed, health, maxHealth: health, isBoss, hasHit: false,
+      coinValue: isBoss ? window.GC.BOSS_COIN_VALUE : window.GC.ENEMY_COIN_VALUE
     };
   }
 
   window.EnemyFactory = { createEnemy };
 })();
+

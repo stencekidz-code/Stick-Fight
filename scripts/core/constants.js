@@ -1,25 +1,26 @@
 // Game constants and mutable settings
 // Player stats
-const PLAYER_MAX_HEALTH = 100;
-const PLAYER_SPEED = 30;
+const PLAYER_MAX_HEALTH = 100000;
+const PLAYER_SPEED = 10;
 const PLAYER_JUMP_STRENGTH = -15;
-const PLAYER_PUNCH_DAMAGE = 100;
+const PLAYER_PUNCH_DAMAGE = 10000;
 const PLAYER_PUNCH_DURATION_MS = 150;
 const PLAYER_COLOR = '#00ff41';
 
 // Enemy defaults (mutable per difficulty)
 let ENEMY_HEALTH = 50;
 let ENEMY_SPEED = 2;
-let ENEMY_PUNCH_DAMAGE = 10;
+let ENEMY_PUNCH_DAMAGE = 1;
 const ENEMY_PUNCH_DURATION_MS = 300;
 const ENEMY_COLOR = '#ff073a';
-
+const ENEMY_COIN_VALUE = 10;
 // Boss defaults
 
 let BOSS_HEALTH = 300; 
-let BOSS_SPEED = 1;
+let BOSS_SPEED = 3;
 let BOSS_PUNCH_DAMAGE = 2;
 const BOSS_PUNCH_DURATION_MS = 500;
+const BOSS_COIN_VALUE = 50;
 // BOSS_COLOR: replaced with a simple time-based color cycler.
 // getBossColor() returns a hex color that cycles the hue over time using HSL.
 function hslToHex(h, s, l) {
@@ -63,6 +64,7 @@ window.GC = {
   PLAYER_MAX_HEALTH, PLAYER_SPEED, PLAYER_JUMP_STRENGTH, PLAYER_PUNCH_DAMAGE, PLAYER_PUNCH_DURATION_MS, PLAYER_COLOR,
   ENEMY_HEALTH, ENEMY_SPEED, ENEMY_PUNCH_DAMAGE, ENEMY_PUNCH_DURATION_MS, ENEMY_COLOR,
   BOSS_HEALTH, BOSS_SPEED, BOSS_PUNCH_DAMAGE, BOSS_PUNCH_DURATION_MS,
+  ENEMY_COIN_VALUE, BOSS_COIN_VALUE, 
   // BOSS_COLOR is provided as a getter to keep API backwards compatible while
   // returning a time-varying color.
   get BOSS_COLOR() { return getBossColor(); },
