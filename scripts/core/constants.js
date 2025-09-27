@@ -1,9 +1,9 @@
 // Game constants and mutable settings
 // Player stats
 const PLAYER_MAX_HEALTH = 100;
-const PLAYER_SPEED = 4;
-const PLAYER_JUMP_STRENGTH = -20;
-const PLAYER_PUNCH_DAMAGE = 15;
+const PLAYER_SPEED = 30;
+const PLAYER_JUMP_STRENGTH = -15;
+const PLAYER_PUNCH_DAMAGE = 100;
 const PLAYER_PUNCH_DURATION_MS = 150;
 const PLAYER_COLOR = '#00ff41';
 
@@ -15,11 +15,36 @@ const ENEMY_PUNCH_DURATION_MS = 300;
 const ENEMY_COLOR = '#ff073a';
 
 // Boss defaults
-let BOSS_HEALTH = 300;
-let BOSS_SPEED = 1.5;
-let BOSS_PUNCH_DAMAGE = 25;
+
+let BOSS_HEALTH = 300; 
+let BOSS_SPEED = 1;
+let BOSS_PUNCH_DAMAGE = 2;
 const BOSS_PUNCH_DURATION_MS = 500;
-const BOSS_COLOR = '#bf00ff';
+// BOSS_COLOR: replaced with a simple time-based color cycler.
+// getBossColor() returns a hex color that cycles the hue over time using HSL.
+function hslToHex(h, s, l) {
+  // Clamp and convert
+  s /= 100;
+  l /= 100;
+  const k = n => (n + h / 30) % 12;
+  const a = s * Math.min(l, 1 - l);
+  const f = n => {
+    const color = l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+    return Math.round(255 * color).toString(16).padStart(2, '0');
+  };
+  return `#${f(0)}${f(8)}${f(4)}`;
+}
+function getBossColor(timeMs = (typeof performance !== 'undefined' ? performance.now() : Date.now())) {
+  // Cycle hue every cycleMs milliseconds (adjustable) and keep saturation/lightness fixed.
+  // Use performance.now() when available for smooth fractional milliseconds.
+  const cycleMs = 1000; // 1 second per full hue cycle (change to taste)
+
+  // Use division instead of integer modulo to avoid the timeMs % 1 === 0 problem
+  const hue = ((timeMs / cycleMs) * 360) % 360; // 0-360
+  const sat = 70; // percent
+  const light = 35; // percent
+  return hslToHex(hue, sat, light);
+}
 
 // Game rules
 const GRAVITY = 0.5;
@@ -37,7 +62,10 @@ window.GC = {
   // constants
   PLAYER_MAX_HEALTH, PLAYER_SPEED, PLAYER_JUMP_STRENGTH, PLAYER_PUNCH_DAMAGE, PLAYER_PUNCH_DURATION_MS, PLAYER_COLOR,
   ENEMY_HEALTH, ENEMY_SPEED, ENEMY_PUNCH_DAMAGE, ENEMY_PUNCH_DURATION_MS, ENEMY_COLOR,
-  BOSS_HEALTH, BOSS_SPEED, BOSS_PUNCH_DAMAGE, BOSS_PUNCH_DURATION_MS, BOSS_COLOR,
+  BOSS_HEALTH, BOSS_SPEED, BOSS_PUNCH_DAMAGE, BOSS_PUNCH_DURATION_MS,
+  // BOSS_COLOR is provided as a getter to keep API backwards compatible while
+  // returning a time-varying color.
+  get BOSS_COLOR() { return getBossColor(); },
   GRAVITY, MAX_ENEMIES, KILLS_TO_SPAWN_BOSS,
   AI_CHASE_DISTANCE, AI_RETREAT_DISTANCE, AI_ATTACK_RANGE_BOSS, AI_ATTACK_RANGE_NORMAL
 };

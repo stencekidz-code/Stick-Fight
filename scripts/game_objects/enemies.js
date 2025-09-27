@@ -5,14 +5,14 @@
     const height = isBoss ? 220 : 180;
     const speed = isBoss ? (window.GC ? window.GC.BOSS_SPEED : 1.5) : (window.GC ? window.GC.ENEMY_SPEED : 2);
     const health = isBoss ? (window.GC ? window.GC.BOSS_HEALTH : 300) : (window.GC ? window.GC.ENEMY_HEALTH : 50);
-    const color = isBoss ? (window.GC ? window.GC.BOSS_COLOR : '#bf00ff') : (window.GC ? window.GC.ENEMY_COLOR : '#ff073a');
     return {
+      get color() { return isBoss ? (window.GC ? window.GC.BOSS_COLOR : '#bf00ff') : (window.GC ? window.GC.ENEMY_COLOR : '#ff073a'); },
       x: canvasWidth - 100,
       y: floorY,
       isAttacking: false,
       facing: 'left',
       action: 'idle',
-      width, height, speed, health, maxHealth: health, color, isBoss, hasHit: false
+      width, height, speed, health, maxHealth: health, isBoss, hasHit: false
     };
   }
 
