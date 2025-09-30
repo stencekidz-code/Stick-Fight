@@ -20,9 +20,9 @@
 	Controls.init();
 
 	function startGame(difficulty) {
-		if (difficulty === 'easy') { window.GC.ENEMY_SPEED = 1; window.GC.ENEMY_PUNCH_DAMAGE = 2; window.GC.BOSS_PUNCH_DAMAGE = 15; }
-		else if (difficulty === 'medium') { window.GC.ENEMY_SPEED = 2; window.GC.ENEMY_PUNCH_DAMAGE = 10; window.GC.BOSS_PUNCH_DAMAGE = 25; }
-		else if (difficulty === 'hard') { window.GC.ENEMY_SPEED = 2.5; window.GC.ENEMY_PUNCH_DAMAGE = 20; window.GC.BOSS_PUNCH_DAMAGE = 35; }
+		if (difficulty === 'easy') { window.GC.ENEMY_SPEED = 1; window.GC.ENEMY_PUNCH_DAMAGE = 2; window.GC.BOSS_PUNCH_DAMAGE = 15; window.GC.ENEMY_COIN_VALUE = 10; window.GC.BOSS_COIN_VALUE = 50;}
+		else if (difficulty === 'medium') { window.GC.ENEMY_SPEED = 2; window.GC.ENEMY_PUNCH_DAMAGE = 10; window.GC.BOSS_PUNCH_DAMAGE = 25;  window.GC.ENEMY_COIN_VALUE = 20; window.GC.BOSS_COIN_VALUE = 150;}
+		else if (difficulty === 'hard') { window.GC.ENEMY_SPEED = 2.5; window.GC.ENEMY_PUNCH_DAMAGE = 20; window.GC.BOSS_PUNCH_DAMAGE = 35;  window.GC.ENEMY_COIN_VALUE = 50; window.GC.BOSS_COIN_VALUE = 300;}
 
 		player = window.PlayerFactory.createPlayer({ x: 100, y: 100 });
 		killCount = 0;

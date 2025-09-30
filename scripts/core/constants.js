@@ -1,9 +1,9 @@
 // Game constants and mutable settings
 // Player stats
-const PLAYER_MAX_HEALTH = 100000;
+const PLAYER_MAX_HEALTH = 200;
 const PLAYER_SPEED = 10;
 const PLAYER_JUMP_STRENGTH = -15;
-const PLAYER_PUNCH_DAMAGE = 10000;
+const PLAYER_PUNCH_DAMAGE = 20;
 const PLAYER_PUNCH_DURATION_MS = 150;
 const PLAYER_COLOR = '#00ff41';
 
